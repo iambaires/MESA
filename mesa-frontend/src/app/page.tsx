@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { Box, Typography, Grid, Button, Modal, Paper, List, ListItem } from '@mui/material';
+import StudentModal from './StudentModal';
+
 
 interface Student {
   name: string;
@@ -44,31 +46,10 @@ export default function Page() {
       )}
 
       {/* Modal for fun facts */}
-      <Modal open={!!selectedStudent} onClose={() => setSelectedStudent(null)}>
-        <>
-          {selectedStudent && (
-            <Paper sx={{ p: 3, width: 300, mx: 'auto', mt: '20vh' }}>
-              <Typography variant="h6" gutterBottom>
-                {selectedStudent.name}
-              </Typography>
-              <List>
-                {selectedStudent.funFacts.map((fact, i) => (
-                  <ListItem key={i} sx={{ pl: 0 }}>
-                    • {fact}
-                  </ListItem>
-                ))}
-              </List>
-              <Button
-                variant="outlined"
-                fullWidth
-                onClick={() => setSelectedStudent(null)}
-              >
-                Close
-              </Button>
-            </Paper>
-          )}
-        </>
-      </Modal>
+      <StudentModal
+        selectedStudent={selectedStudent}
+        onClose={() => setSelectedStudent(null)}
+      />
     </Box>
   );
 }
